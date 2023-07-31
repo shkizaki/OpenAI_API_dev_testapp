@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AIドクター診療所</title>
+    <style>
+        /* 会話履歴のスクロールを可能にするスタイル */
+        .conversation {
+            height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <h1>AIドクター診療所</h1>
+
+    <div class="conversation">
+        {% for message in conversation %}
+            {% if message.role == 'user' %}
+                <p>患者: {{ message.content }}</p>
+            {% elif message.role == 'system' and loop.index % 2 == 0 %}
+                <p>AIドクター: {{ message.content }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <form action="/" method="post">
+        <label for="input">病状を入力してください：</label><br>
+        <textarea id="input" name="input" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="診断する">
+    </form>
+    
+    <form action="/reset" method="post">
+        <input type="submit" value="会話をリセット">
+    </form>
+    
+</body>
+</html>
