@@ -23,7 +23,7 @@ def index():
 
         # 医者としての振る舞いを設定（会話履歴の長さが偶数の場合医者としてのメッセージを追加する）
         if len(conversation) % 2 == 0:
-            conversation.append({"role": "system", "content": "患者の病状を聞いて、適切なアドバイスをしてください。"})
+            conversation.append({"role": "system", "content": "あなたは患者の病状を聞いて、適切なアドバイスをしてください。それ以外のことには回答してはいけません。"})
 
         # OpenAI APIによる回答を取得
         response = openai.ChatCompletion.create(
